@@ -16,12 +16,26 @@ const routes = [
   {
     path: '/register',
     name: 'Register',
-    component: () => import(/* webpackChunkName: "register" */ '../views/Register.vue')
+    component: () => import(/* webpackChunkName: "register" */ '../views/Register.vue'),
+    beforeEnter: (to, from, next) => {
+      if (store.state.isLoggedIn) {
+        next({ path: '/' })
+      } else {
+        next()
+      }
+    },
   },
   {
     path: '/login',
     name: 'Login',
-    component: () => import(/* webpackChunkName: "login" */ '../views/Login.vue')
+    component: () => import(/* webpackChunkName: "login" */ '../views/Login.vue'),
+    beforeEnter: (to, from, next) => {
+      if (store.state.isLoggedIn) {
+        next({ path: '/' })
+      } else {
+        next()
+      }
+    },
   },
   {
     path: '/addProduct',
