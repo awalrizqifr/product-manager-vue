@@ -60,6 +60,10 @@ const routes = [
         next()
       }
     },
+  },
+  {
+    path: '/:pathMatch(.*)*',
+    component: () => import(/* webpackChunkName: "notFOundPage" */ '../views/NotFoundPage.vue')
   }
 ]
 
